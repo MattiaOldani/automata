@@ -29,6 +29,8 @@ from automata.base.utils import (
 from automata.pda.configuration import PDAConfiguration
 from automata.pda.stack import PDAStack
 
+from subprocess import run
+
 # Optional imports for use with visual functionality
 try:
     import coloraide
@@ -212,6 +214,7 @@ class PDA(Automaton, metaclass=abc.ABCMeta):
         # Write diagram to file
         if path is not None:
             save_graph(graph, path)
+            run(["dot", "-Kdot", "-Tsvg", "-O", path])
 
         return graph
 
