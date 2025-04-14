@@ -248,7 +248,7 @@ class Automaton(metaclass=abc.ABCMeta):
         exceptions.InvalidStateError
             If any final states are invalid.
         """
-        invalid_states = self.final_states - self.states
+        invalid_states = set(self.final_states) - set(self.states)
         if invalid_states:
             raise exceptions.InvalidStateError(
                 "final states are not valid ({})".format(

@@ -361,7 +361,9 @@ class PDA(Automaton, metaclass=abc.ABCMeta):
             arrowsize=arrow_size,
         )
 
-        nonfinal_states = map(self._get_state_name, self.states - self.final_states)
+        nonfinal_states = map(
+            self._get_state_name, set(self.states) - set(self.final_states)
+        )
         final_states = map(self._get_state_name, self.final_states)
         graph.add_nodes_from(nonfinal_states, shape="circle", fontsize=font_size)
         graph.add_nodes_from(final_states, shape="doublecircle", fontsize=font_size)
